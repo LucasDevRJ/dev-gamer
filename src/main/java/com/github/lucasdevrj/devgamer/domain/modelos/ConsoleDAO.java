@@ -33,6 +33,20 @@ public class ConsoleDAO {
         }
     }
 
+    public void excluir(int codigo) {
+        String sql = "DELETE FROM console WHERE codigo = ?";
+
+        try {
+            PreparedStatement parametro = this.conexao.prepareStatement(sql);
+            parametro.setInt(1, codigo);
+            parametro.execute();
+            parametro.close();
+            this.conexao.close();
+        } catch (SQLException erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+    }
+
     public Set<Console> listar() {
         PreparedStatement parametro;
         ResultSet resultSet;
@@ -54,11 +68,40 @@ public class ConsoleDAO {
                 consoles.add(console);
             }
             parametro.close();
-            resultSet.next();
+            resultSet.close();
             this.conexao.close();
         } catch (SQLException erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
         return consoles;
+    }
+
+    public Console listarPorCodigo(int codigo) {
+        PreparedStatement parametro;
+        ResultSet resultSet;
+        Console console = null;
+        String sql = "SELECT * FROM console WHERE codigo = ?";
+
+        try {
+            parametro = this.conexao.prepareStatement(sql);
+            parametro.setInt(1, codigo);
+            resultSet = parametro.executeQuery();
+
+            while (resultSet.next()) {
+                int codigoConsole = resultSet.getInt(1);
+                String nomeConsole = resultSet.getString(2);
+                float precoConsole = resultSet.getFloat(3);
+                String descricaoConsole = resultSet.getString(4);
+
+                DadosConsole dadosConsole = new DadosConsole(codigoConsole, nomeConsole, precoConsole, descricaoConsole);
+                console = new Console(dadosConsole);
+            }
+            parametro.close();
+            resultSet.close();
+            this.conexao.close();
+        } catch (SQLException erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
+        return console;
     }
 }

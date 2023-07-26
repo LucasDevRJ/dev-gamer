@@ -20,6 +20,25 @@ public class ConsoleService {
         consoleDAO.salvar(dados);
     }
 
+    public void excluir(int codigo) {
+        Console console = buscarCodigoConsole(codigo);
+
+        Connection conexao = this.conexao.conectar();
+        ConsoleDAO consoleDAO = new ConsoleDAO(conexao);
+        consoleDAO.excluir(codigo);
+    }
+
+    private Console buscarCodigoConsole(int codigo) {
+        Connection conexao = this.conexao.conectar();
+        ConsoleDAO consoleDAO = new ConsoleDAO(conexao);
+        Console console = consoleDAO.listarPorCodigo(codigo);
+        if (console != null) {
+            return  console;
+        } else {
+            throw new NullPointerException("Não existe console cadastrado com esse código!!");
+        }
+    }
+
     public Set<Console> listarConsoles() {
         Connection conexao = this.conexao.conectar();
         ConsoleDAO consoleDAO = new ConsoleDAO(conexao);

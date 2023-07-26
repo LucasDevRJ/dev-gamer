@@ -35,7 +35,12 @@ public class Principal {
             case 4:
                 listarConsoles();
                 break;
+
+            case 3:
+                excluirConsole();
+                break;
         }
+        exibeMenu();
     }
 
     private static void cadastrarConsole() {
@@ -56,9 +61,20 @@ public class Principal {
         service.cadastrar(dadosConsole);
     }
 
+    private static void excluirConsole() {
+        System.out.print("Digite o código do console: ");
+        int codigo = entrada.nextInt();
+
+        service.excluir(codigo);
+    }
+
     private static void listarConsoles() {
-        System.out.println("Consoles cadastrados");
         Set<Console> consoles = service.listarConsoles();
-        consoles.stream().forEach(System.out::println);
+        if (!consoles.isEmpty()) {
+            System.out.println("Consoles cadastrados");
+            consoles.stream().forEach(System.out::println);
+        } else {
+            System.err.println("Não existem consoles cadastrados!!\n");
+        }
     }
 }
