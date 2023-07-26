@@ -1,6 +1,9 @@
 package com.github.lucasdevrj.devgamer.domain.modelos;
 
 import com.github.lucasdevrj.devgamer.RegrasDeNegocioException;
+import com.google.protobuf.Value;
+
+import java.util.Comparator;
 
 public class Console {
     private int codigo;
@@ -65,9 +68,9 @@ public class Console {
 
     @Override
     public String toString() {
-        return "Código: " + this.codigo +
-                " |Nome: " + this.nome +
-                " |Preço: " + this.preco +
-                " |Descrição: " + this.descricao;
+        String informacoes = """
+                Código: %d | Nome: %s | Preço: R$ %.2f | Descrição: %s
+                """.formatted(this.codigo, this.nome, this.preco, this.descricao);
+        return informacoes;
     }
 }

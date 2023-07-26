@@ -3,6 +3,7 @@ package com.github.lucasdevrj.devgamer;
 import com.github.lucasdevrj.devgamer.domain.modelos.Console;
 import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleService;
 import com.github.lucasdevrj.devgamer.domain.modelos.DadosConsole;
+import com.mysql.cj.xdevapi.Collection;
 
 import java.util.Scanner;
 import java.util.Set;
@@ -39,6 +40,7 @@ public class Principal {
                 excluirConsole();
                 break;
         }
+        exibeMenu();
     }
 
     private static void cadastrarConsole() {
@@ -57,6 +59,8 @@ public class Principal {
         DadosConsole dadosConsole = new DadosConsole(codigo, nome, preco, descricao);
 
         service.cadastrar(dadosConsole);
+
+        System.out.println("Console cadastrado com sucesso!\n");
     }
 
     private static void excluirConsole() {
@@ -64,15 +68,18 @@ public class Principal {
         int codigo = entrada.nextInt();
 
         service.excluir(codigo);
+
+        System.out.println("Console excluído com sucesso!\n");
     }
 
     private static void listarConsoles() {
         Set<Console> consoles = service.listarConsoles();
         if (!consoles.isEmpty()) {
             System.out.println("Consoles cadastrados");
-            consoles.stream().forEach(System.out::println);
+            consoles.stream().forEach(System.out::print);
         } else {
             System.err.println("Não existem consoles cadastrados!!\n");
         }
+        System.out.println();
     }
 }
