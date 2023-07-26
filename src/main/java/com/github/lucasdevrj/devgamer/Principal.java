@@ -4,7 +4,6 @@ import com.github.lucasdevrj.devgamer.domain.modelos.Console;
 import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleService;
 import com.github.lucasdevrj.devgamer.domain.modelos.DadosConsole;
 
-import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -40,7 +39,6 @@ public class Principal {
                 excluirConsole();
                 break;
         }
-        exibeMenu();
     }
 
     private static void cadastrarConsole() {
