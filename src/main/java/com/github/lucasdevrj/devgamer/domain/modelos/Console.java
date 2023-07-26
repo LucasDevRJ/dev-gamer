@@ -6,11 +6,11 @@ public class Console {
     private float preco;
     private String descricao;
 
-    public Console(int codigo, String nome, float preco, String descricao) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.preco = preco;
-        this.descricao = descricao;
+    public Console(DadosConsole dados) {
+        this.codigo = dados.codigo();
+        this.nome = dados.nome();
+        this.preco = dados.preco();
+        this.descricao = dados.descricao();
     }
 
     public int getCodigo() {

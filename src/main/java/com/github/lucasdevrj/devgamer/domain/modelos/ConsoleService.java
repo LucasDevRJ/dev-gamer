@@ -11,9 +11,9 @@ public class ConsoleService {
         this.conexao = new ConexaoBancoDados();
     }
 
-    public void cadastrar(Console console) {
-        Connection conexao = this.conexao.conecta();
-        Console consoleCriado = new Console(console.getCodigo(), console.getNome(), console.getPreco(), console.getDescricao());
-
+    public void cadastrar(DadosConsole dados) {
+        Connection conexao = this.conexao.conectar();
+        ConsoleDAO consoleDAO = new ConsoleDAO(conexao);
+        consoleDAO.salvar(dados);
     }
 }

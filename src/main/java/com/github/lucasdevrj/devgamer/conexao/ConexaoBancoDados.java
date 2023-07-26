@@ -1,19 +1,29 @@
 package com.github.lucasdevrj.devgamer.conexao;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoBancoDados {
-    public Connection conecta() {
-        Connection conexao = null;
+    public Connection conectar() {
         try {
-            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/dev_gamer?user=root&password=root");
-            System.out.println("Conexão com o banco de dados");
-            conexao.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro: " + erro.getMessage());
+            return criaFonteDados().getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return conexao;
+    }
+
+    //método para limitar as conexões com o banco
+    private HikariDataSource criaFonteDados() {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/dev_gamer");
+        config.setUsername("root");
+        config.setPassword("root");
+        config.setMaximumPoolSize(10);
+
+        return new HikariDataSource(config);
     }
 }

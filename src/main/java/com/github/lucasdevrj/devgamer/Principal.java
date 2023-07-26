@@ -1,9 +1,13 @@
 package com.github.lucasdevrj.devgamer;
 
+import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleService;
+import com.github.lucasdevrj.devgamer.domain.modelos.DadosConsole;
+
 import java.util.Scanner;
 
 public class Principal {
-    private static Scanner entrada = new Scanner(System.in);
+    private static Scanner entrada = new Scanner(System.in).useDelimiter("\n");
+    private static ConsoleService service = new ConsoleService();
     public static void main(String[] args) {
         exibeMenu();
     }
@@ -31,12 +35,18 @@ public class Principal {
         int codigo = entrada.nextInt();
 
         System.out.print("Digite o nome do console: ");
-        String nome = entrada.nextLine();
+        String nome = entrada.next();
 
         System.out.print("Digite o preço do console: ");
-        Float preco = entrada.nextFloat();
+        float preco = entrada.nextFloat();
 
         System.out.print("Digite a descrição do console: ");
-        String descricao = entrada.nextLine();
+        String descricao = entrada.next();
+
+        DadosConsole dadosConsole = new DadosConsole(codigo, nome, preco, descricao);
+
+        service.cadastrar(dadosConsole);
+
+        entrada.next();
     }
 }
