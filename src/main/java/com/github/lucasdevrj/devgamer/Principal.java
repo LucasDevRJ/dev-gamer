@@ -1,9 +1,12 @@
 package com.github.lucasdevrj.devgamer;
 
+import com.github.lucasdevrj.devgamer.domain.modelos.Console;
 import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleService;
 import com.github.lucasdevrj.devgamer.domain.modelos.DadosConsole;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Principal {
     private static Scanner entrada = new Scanner(System.in).useDelimiter("\n");
@@ -27,6 +30,11 @@ public class Principal {
         switch (opcao) {
             case 1:
                 cadastrarConsole();
+                break;
+
+            case 4:
+                listarConsoles();
+                break;
         }
     }
 
@@ -46,7 +54,11 @@ public class Principal {
         DadosConsole dadosConsole = new DadosConsole(codigo, nome, preco, descricao);
 
         service.cadastrar(dadosConsole);
+    }
 
-        entrada.next();
+    private static void listarConsoles() {
+        System.out.println("Consoles cadastrados");
+        Set<Console> consoles = service.listarConsoles();
+        consoles.stream().forEach(System.out::println);
     }
 }

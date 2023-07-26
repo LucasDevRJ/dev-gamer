@@ -28,4 +28,12 @@ public class Console {
     public String getDescricao() {
         return descricao;
     }
+
+    @Override
+    public String toString() {
+        return "Código: " + this.codigo +
+                " |Nome: " + this.nome +
+                " |Preço: " + this.preco +
+                " |Descrição: " + this.descricao;
+    }
 }
