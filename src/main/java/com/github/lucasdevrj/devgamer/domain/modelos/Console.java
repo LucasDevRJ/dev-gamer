@@ -9,38 +9,58 @@ public class Console {
     private String descricao;
 
     public Console(DadosConsole dados) {
-        if (codigo <= 0) {
-            throw new RegrasDeNegocioException("Digite um código maior que zero!!");
-        }
-        if (nome.isEmpty()) {
-            throw new RegrasDeNegocioException("Digite o nome do console!!");
-        }
-        if (preco <= 0.0) {
-            throw new RegrasDeNegocioException("Digite o preço do console!!");
-        }
-        if (descricao.isEmpty()) {
-            throw new RegrasDeNegocioException("Digite a descrição do console!!");
-        }
-        this.codigo = dados.codigo();
-        this.nome = dados.nome();
-        this.preco = dados.preco();
-        this.descricao = dados.descricao();
+        this.setCodigo(dados.codigo());
+        this.setNome(dados.nome());
+        this.setPreco(dados.preco());
+        this.setDescricao(dados.descricao());
     }
 
     public int getCodigo() {
         return codigo;
     }
 
+    public void setCodigo(int codigo) {
+        if (codigo <= 0) {
+            throw new RegrasDeNegocioException("Digite um código maior que zero!!");
+        } else {
+            this.codigo = codigo;
+        }
+    }
+
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        if (nome.isEmpty()) {
+            throw new RegrasDeNegocioException("Digite o nome do console!!");
+        } else {
+            this.nome = nome;
+        }
     }
 
     public float getPreco() {
         return preco;
     }
 
+    public void setPreco(float preco) {
+        if (preco <= 0.0) {
+            throw new RegrasDeNegocioException("Digite o preço do console!!");
+        } else {
+            this.preco = preco;
+        }
+    }
+
     public String getDescricao() {
         return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        if (descricao.isEmpty()) {
+            throw new RegrasDeNegocioException("Digite a descrição do console!!");
+        } else {
+            this.descricao = descricao;
+        }
     }
 
     @Override
