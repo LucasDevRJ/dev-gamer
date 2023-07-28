@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 public class ConsoleDAO {
@@ -103,5 +104,28 @@ public class ConsoleDAO {
             System.out.println("Erro: " + erro.getMessage());
         }
         return console;
+    }
+
+    public void atualizar(int codigo, DadosConsole dados) {
+        PreparedStatement parametro;
+        Console console = new Console(dados);
+        String sql = "UPDATE console SET nome = ?, preco = ?, descricao = ? WHERE codigo = ?";
+
+        try {
+            this.conexao.setAutoCommit(false);
+            parametro = this.conexao.prepareStatement(sql);
+
+            parametro.setString(1, dados.nome());
+            parametro.setFloat(2, dados.preco());
+            parametro.setString(3, dados.descricao());
+            parametro.setInt(4, dados.codigo());
+
+            parametro.execute();
+            this.conexao.commit();
+            parametro.close();
+            this.conexao.close();
+        } catch (SQLException erro) {
+            System.out.println("Erro: " + erro.getMessage());
+        }
     }
 }

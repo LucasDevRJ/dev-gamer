@@ -1,6 +1,7 @@
 package com.github.lucasdevrj.devgamer;
 
 import com.github.lucasdevrj.devgamer.domain.modelos.Console;
+import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleDAO;
 import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleService;
 import com.github.lucasdevrj.devgamer.domain.modelos.DadosConsole;
 import com.mysql.cj.xdevapi.Collection;
@@ -32,6 +33,10 @@ public class Principal {
                 cadastrarConsole();
                 break;
 
+            case 2:
+                atualizarConsole();
+            break;
+
             case 4:
                 listarConsoles();
                 break;
@@ -61,6 +66,28 @@ public class Principal {
         service.cadastrar(dadosConsole);
 
         System.out.println("Console cadastrado com sucesso!\n");
+    }
+
+    private static void atualizarConsole() {
+        System.out.print("Digite o código do console: ");
+        int codigo = entrada.nextInt();
+
+        service.buscarCodigoConsole(codigo);
+
+        System.out.print("Digite o nome do console: ");
+        String novoNome = entrada.next();
+
+        System.out.print("Digite o preço do console: ");
+        float novoPreco = entrada.nextFloat();
+
+        System.out.print("Digite a descrição do console: ");
+        String novaDescricao = entrada.next();
+
+        DadosConsole dadosConsole = new DadosConsole(codigo, novoNome, novoPreco, novaDescricao);
+
+        service.atualizar(codigo, dadosConsole);
+
+        System.out.println("Console atualizado com sucesso!\n");
     }
 
     private static void excluirConsole() {

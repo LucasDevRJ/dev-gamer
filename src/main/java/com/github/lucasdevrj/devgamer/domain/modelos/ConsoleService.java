@@ -20,6 +20,12 @@ public class ConsoleService {
         consoleDAO.salvar(dados);
     }
 
+    public void atualizar(int codigo, DadosConsole dados) {
+        Connection conexao = this.conexao.conectar();
+        ConsoleDAO consoleDAO = new ConsoleDAO(conexao);
+        consoleDAO.atualizar(codigo, dados);
+    }
+
     public void excluir(int codigo) {
         Console console = buscarCodigoConsole(codigo);
 
@@ -28,7 +34,7 @@ public class ConsoleService {
         consoleDAO.excluir(codigo);
     }
 
-    private Console buscarCodigoConsole(int codigo) {
+    public Console buscarCodigoConsole(int codigo) {
         Connection conexao = this.conexao.conectar();
         ConsoleDAO consoleDAO = new ConsoleDAO(conexao);
         Console console = consoleDAO.listarPorCodigo(codigo);
