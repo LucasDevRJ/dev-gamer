@@ -1,15 +1,13 @@
 package com.github.lucasdevrj.devgamer;
 
 import com.github.lucasdevrj.devgamer.domain.modelos.Console;
-import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleDAO;
 import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleService;
 import com.github.lucasdevrj.devgamer.domain.modelos.DadosConsole;
-import com.mysql.cj.xdevapi.Collection;
 
 import java.util.Scanner;
 import java.util.Set;
 
-public class Principal {
+public class MenuJogo {
     private static Scanner entrada = new Scanner(System.in).useDelimiter("\n");
     private static ConsoleService service = new ConsoleService();
     public static void main(String[] args) {
@@ -18,10 +16,10 @@ public class Principal {
 
     public static void exibeMenu() {
         String menu = """
-                1 - Cadastrar Console
-                2 - Atualizar Consoles
-                3 - Excluir Console
-                4 - Listar Consoles
+                1 - Cadastrar Jogo
+                2 - Atualizar Jogo
+                3 - Excluir Jogo
+                4 - Listar Jogos
                 5 - Sair
                 """;
         System.out.println(menu);
@@ -30,11 +28,11 @@ public class Principal {
 
         switch (opcao) {
             case 1:
-                cadastrarConsole();
+                cadastrarJogo();
                 break;
 
             case 2:
-                atualizarConsole();
+                atualizarJogo();
             break;
 
             case 4:
@@ -48,7 +46,7 @@ public class Principal {
         exibeMenu();
     }
 
-    private static void cadastrarConsole() {
+    private static void cadastrarJogo() {
         System.out.print("Digite o código do console: ");
         int codigo = entrada.nextInt();
 
@@ -68,7 +66,7 @@ public class Principal {
         System.out.println("Console cadastrado com sucesso!\n");
     }
 
-    private static void atualizarConsole() {
+    private static void atualizarJogo() {
         System.out.print("Digite o código do console: ");
         int codigo = entrada.nextInt();
 

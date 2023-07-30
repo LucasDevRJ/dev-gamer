@@ -74,11 +74,11 @@ public class JogoDAO {
         return jogos;
     }
 
-    public Console listarPorCodigo(int codigo) {
+    public Jogo listarPorCodigo(int codigo) {
         PreparedStatement parametro;
         ResultSet resultSet;
-        Console console = null;
-        String sql = "SELECT * FROM console WHERE codigo = ?";
+        Jogo jogo = null;
+        String sql = "SELECT * FROM jogo WHERE codigo = ?";
 
         try {
             parametro = this.conexao.prepareStatement(sql);
@@ -86,13 +86,13 @@ public class JogoDAO {
             resultSet = parametro.executeQuery();
 
             while (resultSet.next()) {
-                int codigoConsole = resultSet.getInt(1);
-                String nomeConsole = resultSet.getString(2);
-                float precoConsole = resultSet.getFloat(3);
-                String descricaoConsole = resultSet.getString(4);
+                int codigoJogo = resultSet.getInt(1);
+                String nomeJogo = resultSet.getString(2);
+                String plataformaJogo = resultSet.getString(3);
+                float precoJogo = resultSet.getFloat(4);
 
-                DadosConsole dadosConsole = new DadosConsole(codigoConsole, nomeConsole, precoConsole, descricaoConsole);
-                console = new Console(dadosConsole);
+                DadosJogo dadosJogo = new DadosJogo(codigoJogo, nomeJogo, plataformaJogo, precoJogo);
+                jogo = new Jogo(dadosJogo);
             }
             parametro.close();
             resultSet.close();
@@ -100,21 +100,21 @@ public class JogoDAO {
         } catch (SQLException erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
-        return console;
+        return jogo;
     }
 
-    public void atualizar(int codigo, DadosConsole dados) {
+    public void atualizar(int codigo, DadosJogo dados) {
         PreparedStatement parametro;
-        Console console = new Console(dados);
-        String sql = "UPDATE console SET nome = ?, preco = ?, descricao = ? WHERE codigo = ?";
+        Jogo console = new Jogo(dados);
+        String sql = "UPDATE jogo SET nome = ?, plataforma = ?, preco = ? WHERE codigo = ?";
 
         try {
             this.conexao.setAutoCommit(false);
             parametro = this.conexao.prepareStatement(sql);
 
             parametro.setString(1, dados.nome());
-            parametro.setFloat(2, dados.preco());
-            parametro.setString(3, dados.descricao());
+            parametro.setString(2, dados.plataforma());
+            parametro.setFloat(3, dados.preco());
             parametro.setInt(4, dados.codigo());
 
             parametro.execute();
