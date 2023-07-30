@@ -12,7 +12,7 @@ public class Jogo {
         this.setCodigo(dados.codigo());
         this.setNome(dados.nome());
         this.setPreco(dados.preco());
-        this.setPlataforma(dados.plataforma);
+        this.setPlataforma(dados.plataforma());
     }
 
     public int getCodigo() {
@@ -33,7 +33,7 @@ public class Jogo {
 
     public void setNome(String nome) {
         if (nome.isEmpty()) {
-            throw new RegrasDeNegocioException("Digite o nome do console!!");
+            throw new RegrasDeNegocioException("Digite o nome do jogo!!");
         } else {
             this.nome = nome;
         }
@@ -44,7 +44,11 @@ public class Jogo {
     }
 
     public void setPlataforma(String plataforma) {
-        this.plataforma = plataforma;
+        if (plataforma.isEmpty()) {
+            throw new RegrasDeNegocioException("Digite a plataforma do jogo!!");
+        } else {
+            this.plataforma = plataforma;
+        }
     }
 
     public float getPreco() {
@@ -53,7 +57,7 @@ public class Jogo {
 
     public void setPreco(float preco) {
         if (preco <= 0.0) {
-            throw new RegrasDeNegocioException("Digite o preço do console!!");
+            throw new RegrasDeNegocioException("Digite o preço do jogo!!");
         } else {
             this.preco = preco;
         }
@@ -61,8 +65,8 @@ public class Jogo {
     @Override
     public String toString() {
         String informacoes = """
-                Código: %d | Nome: %s | Preço: R$ %.2f | Descrição: %s
-                """.formatted(this.codigo, this.nome, this.preco, this.descricao);
+                Código: %d | Nome: %s | Plataforma: %s | Preço: R$ %.2f
+                """.formatted(this.codigo, this.nome, this.plataforma, this.preco);
         return informacoes;
     }
 }
