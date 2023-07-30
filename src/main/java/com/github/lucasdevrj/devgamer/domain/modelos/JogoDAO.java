@@ -12,7 +12,6 @@ public class JogoDAO {
     public JogoDAO(Connection conexao) {
         this.conexao = conexao;
     }
-
     public void salvar(DadosJogo dados) {
         Jogo jogo = new Jogo(dados);
 
@@ -33,7 +32,7 @@ public class JogoDAO {
     }
 
     public void excluir(int codigo) {
-        String sql = "DELETE FROM console WHERE codigo = ?";
+        String sql = "DELETE FROM jogo WHERE codigo = ?";
 
         try {
             PreparedStatement parametro = this.conexao.prepareStatement(sql);
@@ -46,11 +45,11 @@ public class JogoDAO {
         }
     }
 
-    public Set<Console> listar() {
+    public Set<Jogo> listar() {
         PreparedStatement parametro;
         ResultSet resultSet;
-        Set<Console> consoles = new HashSet<Console>();
-        String sql = "SELECT * FROM console";
+        Set<Jogo> jogos = new HashSet<Jogo>();
+        String sql = "SELECT * FROM jogo";
 
         try {
             parametro = this.conexao.prepareStatement(sql);
@@ -59,12 +58,12 @@ public class JogoDAO {
             while (resultSet.next()) {
                 int codigo = resultSet.getInt(1);
                 String nome = resultSet.getString(2);
-                float preco = resultSet.getFloat(3);
-                String descricao = resultSet.getString(4);
+                String plataforma = resultSet.getString(3);
+                float preco = resultSet.getFloat(4);
 
-                DadosConsole dadosConsole = new DadosConsole(codigo, nome, preco, descricao);
-                Console console = new Console(dadosConsole);
-                consoles.add(console);
+                DadosJogo dadosJogo = new DadosJogo(codigo, nome, plataforma, preco);
+                Jogo jogo = new Jogo(dadosJogo);
+                jogos.add(jogo);
             }
             parametro.close();
             resultSet.close();
@@ -72,7 +71,7 @@ public class JogoDAO {
         } catch (SQLException erro) {
             System.out.println("Erro: " + erro.getMessage());
         }
-        return consoles;
+        return jogos;
     }
 
     public Console listarPorCodigo(int codigo) {
