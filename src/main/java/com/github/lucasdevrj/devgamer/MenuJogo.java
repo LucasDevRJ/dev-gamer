@@ -10,9 +10,6 @@ import java.util.Set;
 public class MenuJogo {
     private static Scanner entrada = new Scanner(System.in).useDelimiter("\n");
     private static ConsoleService service = new ConsoleService();
-    public static void main(String[] args) {
-        exibeMenu();
-    }
 
     public static void exibeMenu() {
         String menu = """
@@ -20,7 +17,7 @@ public class MenuJogo {
                 2 - Atualizar Jogo
                 3 - Excluir Jogo
                 4 - Listar Jogos
-                5 - Sair
+                5 - Voltar
                 """;
         System.out.println(menu);
         System.out.print("Digite a opção desejada: ");
