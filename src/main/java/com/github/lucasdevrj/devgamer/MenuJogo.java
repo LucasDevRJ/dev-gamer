@@ -1,15 +1,13 @@
 package com.github.lucasdevrj.devgamer;
 
-import com.github.lucasdevrj.devgamer.domain.modelos.Console;
-import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleService;
-import com.github.lucasdevrj.devgamer.domain.modelos.DadosConsole;
+import com.github.lucasdevrj.devgamer.domain.modelos.*;
 
 import java.util.Scanner;
 import java.util.Set;
 
 public class MenuJogo {
     private static Scanner entrada = new Scanner(System.in).useDelimiter("\n");
-    private static ConsoleService service = new ConsoleService();
+    private static JogoService service = new JogoService();
 
     public static void exibeMenu() {
         String menu = """
@@ -24,83 +22,87 @@ public class MenuJogo {
         int opcao = entrada.nextInt();
 
         switch (opcao) {
-            case 1:
-                cadastrarJogo();
+                case 1:
+                    cadastrarJogo();
                 break;
 
-            case 2:
-                atualizarJogo();
-            break;
-
-            case 4:
-                listarConsoles();
+                case 2:
+                    atualizarJogo();
                 break;
 
-            case 3:
-                excluirConsole();
+                case 3:
+                    excluirConsole();
+                break;
+
+                case 4:
+                    listarConsoles();
+                break;
+
+                case 5:
+                    Principal.exibeMenu();
                 break;
         }
         exibeMenu();
     }
 
     private static void cadastrarJogo() {
-        System.out.print("Digite o código do console: ");
+        System.out.print("Digite o código do jogo: ");
         int codigo = entrada.nextInt();
 
-        System.out.print("Digite o nome do console: ");
+        System.out.print("Digite o nome do jogo: ");
         String nome = entrada.next();
 
-        System.out.print("Digite o preço do console: ");
+        System.out.print("Digite a plataforma do jogo: ");
+        String plataforma = entrada.next();
+
+        System.out.print("Digite o preço do jogo: ");
         float preco = entrada.nextFloat();
 
-        System.out.print("Digite a descrição do console: ");
-        String descricao = entrada.next();
+        DadosJogo dadosJogo = new DadosJogo(codigo, nome, plataforma, preco);
 
-        DadosConsole dadosConsole = new DadosConsole(codigo, nome, preco, descricao);
+        service.cadastrar(dadosJogo);
 
-        service.cadastrar(dadosConsole);
-
-        System.out.println("Console cadastrado com sucesso!\n");
+        System.out.println("Jogo cadastrado com sucesso!\n");
     }
 
     private static void atualizarJogo() {
-        System.out.print("Digite o código do console: ");
+        System.out.print("Digite o código do jogo: ");
         int codigo = entrada.nextInt();
 
-        service.buscarCodigoConsole(codigo);
+        service.buscarCodigoJogo(codigo);
 
-        System.out.print("Digite o nome do console: ");
+        System.out.print("Digite o nome do jogo: ");
         String novoNome = entrada.next();
 
-        System.out.print("Digite o preço do console: ");
+        System.out.print("Digite a plataforma do jogo: ");
+        String novaPlataforma = entrada.next();
+
+        System.out.print("Digite o preço do jogo: ");
         float novoPreco = entrada.nextFloat();
 
-        System.out.print("Digite a descrição do console: ");
-        String novaDescricao = entrada.next();
+        DadosJogo dadosJogo = new DadosJogo(codigo, novoNome, novaPlataforma, novoPreco);
 
-        DadosConsole dadosConsole = new DadosConsole(codigo, novoNome, novoPreco, novaDescricao);
+        service.atualizar(codigo, dadosJogo);
 
-        service.atualizar(codigo, dadosConsole);
-
-        System.out.println("Console atualizado com sucesso!\n");
+        System.out.println("Jogo atualizado com sucesso!\n");
     }
 
     private static void excluirConsole() {
-        System.out.print("Digite o código do console: ");
+        System.out.print("Digite o código do jogo: ");
         int codigo = entrada.nextInt();
 
         service.excluir(codigo);
 
-        System.out.println("Console excluído com sucesso!\n");
+        System.out.println("Jogo excluído com sucesso!\n");
     }
 
     private static void listarConsoles() {
-        Set<Console> consoles = service.listarConsoles();
-        if (!consoles.isEmpty()) {
-            System.out.println("Consoles cadastrados");
-            consoles.stream().forEach(System.out::print);
+        Set<Jogo> jogos = service.listarJogos();
+        if (!jogos.isEmpty()) {
+            System.out.println("Jogos cadastrados");
+            jogos.stream().forEach(System.out::print);
         } else {
-            System.err.println("Não existem consoles cadastrados!!\n");
+            System.err.println("Não existem jogos cadastrados!!\n");
         }
         System.out.println();
     }

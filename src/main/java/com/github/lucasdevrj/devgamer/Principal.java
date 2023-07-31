@@ -1,9 +1,10 @@
 package com.github.lucasdevrj.devgamer;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
-    public static Scanner entrada = new Scanner(System.in);
+    private static Scanner entrada = new Scanner(System.in);
     public static void main(String[] args) {
         exibeMenu();
     }
@@ -16,7 +17,12 @@ public class Principal {
                 """;
         System.out.println(menu);
         System.out.print("Digite a opção desejada: ");
-        int opcao = entrada.nextInt();
+        int opcao = 0;
+        try {
+            opcao = entrada.nextInt();
+        } catch (InputMismatchException erro) {
+            System.err.println("Digite somente números!!");
+        }
 
         switch (opcao) {
                 case 1:
@@ -33,6 +39,7 @@ public class Principal {
 
                 default:
                     System.out.println("Opção inválida!");
+                    exibeMenu();
         }
     }
 }

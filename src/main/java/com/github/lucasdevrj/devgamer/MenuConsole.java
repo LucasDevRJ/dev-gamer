@@ -24,21 +24,28 @@ public class MenuConsole {
         int opcao = entrada.nextInt();
 
         switch (opcao) {
-            case 1:
-                cadastrarConsole();
+                case 1:
+                    cadastrarConsole();
                 break;
 
-            case 2:
-                atualizarConsole();
-            break;
-
-            case 4:
-                listarConsoles();
+                case 2:
+                    atualizarConsole();
                 break;
 
-            case 3:
-                excluirConsole();
+                case 3:
+                    excluirConsole();
                 break;
+
+                case 4:
+                    listarConsoles();
+                    break;
+
+                case 5:
+                    Principal.exibeMenu();
+                break;
+
+            default:
+                System.out.println("Opção inválida!");
         }
         exibeMenu();
     }
