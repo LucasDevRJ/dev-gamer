@@ -27,7 +27,7 @@ public class MenuConsole {
         try {
             opcao = entrada.nextInt();
         } catch (InputMismatchException erro) {
-            System.err.println("Digite somente números!!");
+            throw new InputMismatchException("Digite somente números!!");
         }
 
         switch (opcao) {

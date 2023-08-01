@@ -1,7 +1,6 @@
 package com.github.lucasdevrj.devgamer.domain.jogo;
 
 import com.github.lucasdevrj.devgamer.conexao.ConexaoBancoDados;
-import com.github.lucasdevrj.devgamer.domain.console.ConsoleDAO;
 
 import java.sql.Connection;
 import java.util.HashSet;
