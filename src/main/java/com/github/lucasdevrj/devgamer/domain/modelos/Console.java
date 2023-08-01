@@ -1,9 +1,6 @@
 package com.github.lucasdevrj.devgamer.domain.modelos;
 
-import com.github.lucasdevrj.devgamer.RegrasDeNegocioException;
-import com.google.protobuf.Value;
-
-import java.util.Comparator;
+import com.github.lucasdevrj.devgamer.excecoes.RegrasDeNegocioException;
 
 public class Console {
     private int codigo;

@@ -1,5 +1,8 @@
 package com.github.lucasdevrj.devgamer;
 
+import com.github.lucasdevrj.devgamer.menus.MenuConsole;
+import com.github.lucasdevrj.devgamer.menus.MenuJogo;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

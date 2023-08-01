@@ -1,9 +1,11 @@
-package com.github.lucasdevrj.devgamer;
+package com.github.lucasdevrj.devgamer.menus;
 
+import com.github.lucasdevrj.devgamer.Principal;
 import com.github.lucasdevrj.devgamer.domain.modelos.Console;
 import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleService;
 import com.github.lucasdevrj.devgamer.domain.modelos.DadosConsole;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -21,7 +23,12 @@ public class MenuConsole {
                 """;
         System.out.println(menu);
         System.out.print("Digite a opção desejada: ");
-        int opcao = entrada.nextInt();
+        int opcao = 0;
+        try {
+            opcao = entrada.nextInt();
+        } catch (InputMismatchException erro) {
+            System.err.println("Digite somente números!!");
+        }
 
         switch (opcao) {
                 case 1:
@@ -47,7 +54,6 @@ public class MenuConsole {
             default:
                 System.out.println("Opção inválida!");
         }
-        exibeMenu();
     }
 
     private static void cadastrarConsole() {
@@ -68,6 +74,7 @@ public class MenuConsole {
         service.cadastrar(dadosConsole);
 
         System.out.println("Console cadastrado com sucesso!\n");
+        exibeMenu();
     }
 
     private static void atualizarConsole() {
@@ -90,6 +97,7 @@ public class MenuConsole {
         service.atualizar(codigo, dadosConsole);
 
         System.out.println("Console atualizado com sucesso!\n");
+        exibeMenu();
     }
 
     private static void excluirConsole() {
@@ -99,6 +107,7 @@ public class MenuConsole {
         service.excluir(codigo);
 
         System.out.println("Console excluído com sucesso!\n");
+        exibeMenu();
     }
 
     private static void listarConsoles() {
@@ -110,5 +119,6 @@ public class MenuConsole {
             System.err.println("Não existem consoles cadastrados!!\n");
         }
         System.out.println();
+        exibeMenu();
     }
 }

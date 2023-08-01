@@ -1,6 +1,7 @@
-package com.github.lucasdevrj.devgamer;
+package com.github.lucasdevrj.devgamer.menus;
 
 import com.github.lucasdevrj.devgamer.domain.modelos.*;
+import com.github.lucasdevrj.devgamer.Principal;
 
 import java.util.Scanner;
 import java.util.Set;
@@ -42,7 +43,6 @@ public class MenuJogo {
                     Principal.exibeMenu();
                 break;
         }
-        exibeMenu();
     }
 
     private static void cadastrarJogo() {
@@ -63,6 +63,7 @@ public class MenuJogo {
         service.cadastrar(dadosJogo);
 
         System.out.println("Jogo cadastrado com sucesso!\n");
+        exibeMenu();
     }
 
     private static void atualizarJogo() {
@@ -85,6 +86,7 @@ public class MenuJogo {
         service.atualizar(codigo, dadosJogo);
 
         System.out.println("Jogo atualizado com sucesso!\n");
+        exibeMenu();
     }
 
     private static void excluirConsole() {
@@ -94,6 +96,7 @@ public class MenuJogo {
         service.excluir(codigo);
 
         System.out.println("Jogo excluído com sucesso!\n");
+        exibeMenu();
     }
 
     private static void listarConsoles() {
@@ -105,5 +108,6 @@ public class MenuJogo {
             System.err.println("Não existem jogos cadastrados!!\n");
         }
         System.out.println();
+        exibeMenu();
     }
 }

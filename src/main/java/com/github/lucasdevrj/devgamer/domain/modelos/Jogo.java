@@ -1,6 +1,6 @@
 package com.github.lucasdevrj.devgamer.domain.modelos;
 
-import com.github.lucasdevrj.devgamer.RegrasDeNegocioException;
+import com.github.lucasdevrj.devgamer.excecoes.RegrasDeNegocioException;
 
 public class Jogo {
     private int codigo;
