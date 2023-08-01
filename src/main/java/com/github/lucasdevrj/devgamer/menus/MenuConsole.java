@@ -91,7 +91,13 @@ public class MenuConsole {
 
     private static void atualizarConsole() {
         System.out.print("Digite o código do console: ");
-        int codigo = entrada.nextInt();
+        int codigo = 0;
+
+        try {
+            codigo = entrada.nextInt();
+        } catch (InputMismatchException erro) {
+            throw new InputMismatchException("Digite somente números!!");
+        }
 
         service.buscarCodigoConsole(codigo);
 
@@ -99,7 +105,13 @@ public class MenuConsole {
         String novoNome = entrada.next();
 
         System.out.print("Digite o preço do console: ");
-        float novoPreco = entrada.nextFloat();
+        float novoPreco = 0.0f;
+
+        try {
+            novoPreco = entrada.nextFloat();
+        } catch (InputMismatchException erro) {
+            throw new InputMismatchException("Digite somente números!!");
+        }
 
         System.out.print("Digite a descrição do console: ");
         String novaDescricao = entrada.next();
@@ -114,7 +126,13 @@ public class MenuConsole {
 
     private static void excluirConsole() {
         System.out.print("Digite o código do console: ");
-        int codigo = entrada.nextInt();
+        int codigo = 0;
+
+        try {
+            codigo = entrada.nextInt();
+        } catch (InputMismatchException erro) {
+            throw new InputMismatchException("Digite somente números!!");
+        }
 
         service.excluir(codigo);
 
