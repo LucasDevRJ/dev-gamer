@@ -1,6 +1,7 @@
-package com.github.lucasdevrj.devgamer.domain.modelos;
+package com.github.lucasdevrj.devgamer.domain.jogo;
 
 import com.github.lucasdevrj.devgamer.conexao.ConexaoBancoDados;
+import com.github.lucasdevrj.devgamer.domain.console.ConsoleDAO;
 
 import java.sql.Connection;
 import java.util.HashSet;
@@ -30,14 +31,14 @@ public class JogoService {
         Jogo jogo = buscarCodigoJogo(codigo);
 
         Connection conexao = this.conexao.conectar();
-        ConsoleDAO consoleDAO = new ConsoleDAO(conexao);
-        consoleDAO.excluir(codigo);
+        JogoDAO jogoDAO = new JogoDAO(conexao);
+        jogoDAO.excluir(codigo);
     }
 
     public Jogo buscarCodigoJogo(int codigo) {
         Connection conexao = this.conexao.conectar();
-        JogoDAO consoleDAO = new JogoDAO(conexao);
-        Jogo jogo = consoleDAO.listarPorCodigo(codigo);
+        JogoDAO jogoDAO = new JogoDAO(conexao);
+        Jogo jogo = jogoDAO.listarPorCodigo(codigo);
         if (jogo != null) {
             return  jogo;
         } else {

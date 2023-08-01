@@ -1,11 +1,10 @@
-package com.github.lucasdevrj.devgamer.domain.modelos;
+package com.github.lucasdevrj.devgamer.domain.console;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 public class ConsoleDAO {

@@ -1,9 +1,9 @@
 package com.github.lucasdevrj.devgamer.menus;
 
 import com.github.lucasdevrj.devgamer.Principal;
-import com.github.lucasdevrj.devgamer.domain.modelos.Console;
-import com.github.lucasdevrj.devgamer.domain.modelos.ConsoleService;
-import com.github.lucasdevrj.devgamer.domain.modelos.DadosConsole;
+import com.github.lucasdevrj.devgamer.domain.console.Console;
+import com.github.lucasdevrj.devgamer.domain.console.ConsoleService;
+import com.github.lucasdevrj.devgamer.domain.console.DadosConsole;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

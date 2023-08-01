@@ -1,4 +1,4 @@
-package com.github.lucasdevrj.devgamer.domain.modelos;
+package com.github.lucasdevrj.devgamer.domain.console;
 
 import com.github.lucasdevrj.devgamer.conexao.ConexaoBancoDados;
 

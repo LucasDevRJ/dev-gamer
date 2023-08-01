@@ -1,4 +1,4 @@
-package com.github.lucasdevrj.devgamer.domain.modelos;
+package com.github.lucasdevrj.devgamer.domain.jogo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

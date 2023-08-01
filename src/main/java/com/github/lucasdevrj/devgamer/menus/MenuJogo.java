@@ -1,6 +1,6 @@
 package com.github.lucasdevrj.devgamer.menus;
 
-import com.github.lucasdevrj.devgamer.domain.modelos.*;
+import com.github.lucasdevrj.devgamer.domain.jogo.*;
 import com.github.lucasdevrj.devgamer.Principal;
 
 import java.util.Scanner;

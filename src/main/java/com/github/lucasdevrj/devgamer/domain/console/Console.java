@@ -1,18 +1,18 @@
-package com.github.lucasdevrj.devgamer.domain.modelos;
+package com.github.lucasdevrj.devgamer.domain.console;
 
 import com.github.lucasdevrj.devgamer.excecoes.RegrasDeNegocioException;
 
-public class Jogo {
+public class Console {
     private int codigo;
     private String nome;
-    private String plataforma;
     private float preco;
+    private String descricao;
 
-    public Jogo(DadosJogo dados) {
+    public Console(DadosConsole dados) {
         this.setCodigo(dados.codigo());
         this.setNome(dados.nome());
         this.setPreco(dados.preco());
-        this.setPlataforma(dados.plataforma());
+        this.setDescricao(dados.descricao());
     }
 
     public int getCodigo() {
@@ -33,21 +33,9 @@ public class Jogo {
 
     public void setNome(String nome) {
         if (nome.isEmpty()) {
-            throw new RegrasDeNegocioException("Digite o nome do jogo!!");
+            throw new RegrasDeNegocioException("Digite o nome do console!!");
         } else {
             this.nome = nome;
-        }
-    }
-
-    public String getPlataforma() {
-        return plataforma;
-    }
-
-    public void setPlataforma(String plataforma) {
-        if (plataforma.isEmpty()) {
-            throw new RegrasDeNegocioException("Digite a plataforma do jogo!!");
-        } else {
-            this.plataforma = plataforma;
         }
     }
 
@@ -57,16 +45,29 @@ public class Jogo {
 
     public void setPreco(float preco) {
         if (preco <= 0.0) {
-            throw new RegrasDeNegocioException("Digite o preço do jogo!!");
+            throw new RegrasDeNegocioException("Digite o preço do console!!");
         } else {
             this.preco = preco;
         }
     }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        if (descricao.isEmpty()) {
+            throw new RegrasDeNegocioException("Digite a descrição do console!!");
+        } else {
+            this.descricao = descricao;
+        }
+    }
+
     @Override
     public String toString() {
         String informacoes = """
-                Código: %d | Nome: %s | Plataforma: %s | Preço: R$ %.2f
-                """.formatted(this.codigo, this.nome, this.plataforma, this.preco);
+                Código: %d | Nome: %s | Preço: R$ %.2f | Descrição: %s
+                """.formatted(this.codigo, this.nome, this.preco, this.descricao);
         return informacoes;
     }
 }
