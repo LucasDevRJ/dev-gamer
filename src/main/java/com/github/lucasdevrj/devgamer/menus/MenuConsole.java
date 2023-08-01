@@ -58,13 +58,25 @@ public class MenuConsole {
 
     private static void cadastrarConsole() {
         System.out.print("Digite o código do console: ");
-        int codigo = entrada.nextInt();
+        int codigo = 0;
+
+        try {
+            codigo = entrada.nextInt();
+        } catch (InputMismatchException erro) {
+            throw new InputMismatchException("Digite somente números!!");
+        }
 
         System.out.print("Digite o nome do console: ");
         String nome = entrada.next();
 
         System.out.print("Digite o preço do console: ");
-        float preco = entrada.nextFloat();
+        float preco = 0.0f;
+
+        try {
+            preco = entrada.nextFloat();
+        } catch (InputMismatchException erro) {
+            throw new InputMismatchException("Digite somente números!!");
+        }
 
         System.out.print("Digite a descrição do console: ");
         String descricao = entrada.next();
