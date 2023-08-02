@@ -3,6 +3,7 @@ package com.github.lucasdevrj.devgamer.menus;
 import com.github.lucasdevrj.devgamer.domain.jogo.*;
 import com.github.lucasdevrj.devgamer.Principal;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -47,7 +48,13 @@ public class MenuJogo {
 
     private static void cadastrarJogo() {
         System.out.print("Digite o código do jogo: ");
-        int codigo = entrada.nextInt();
+        int codigo = 0;
+
+        try {
+            codigo = entrada.nextInt();
+        } catch (InputMismatchException erro) {
+            throw new InputMismatchException("Digite somente números!!");
+        }
 
         System.out.print("Digite o nome do jogo: ");
         String nome = entrada.next();
@@ -56,7 +63,13 @@ public class MenuJogo {
         String plataforma = entrada.next();
 
         System.out.print("Digite o preço do jogo: ");
-        float preco = entrada.nextFloat();
+        float preco = 0.0f;
+
+        try {
+            preco = entrada.nextFloat();
+        } catch (InputMismatchException erro) {
+            throw new InputMismatchException("Digite somente números!!");
+        }
 
         DadosJogo dadosJogo = new DadosJogo(codigo, nome, plataforma, preco);
 
