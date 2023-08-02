@@ -81,7 +81,13 @@ public class MenuJogo {
 
     private static void atualizarJogo() {
         System.out.print("Digite o código do jogo: ");
-        int codigo = entrada.nextInt();
+        int codigo = 0;
+
+        try {
+            codigo = entrada.nextInt();
+        } catch (InputMismatchException erro) {
+            throw new InputMismatchException("Digite somente números!!");
+        }
 
         service.buscarCodigoJogo(codigo);
 
@@ -92,7 +98,13 @@ public class MenuJogo {
         String novaPlataforma = entrada.next();
 
         System.out.print("Digite o preço do jogo: ");
-        float novoPreco = entrada.nextFloat();
+        float novoPreco = 0.0f;
+
+        try {
+            novoPreco = entrada.nextFloat();
+        } catch (InputMismatchException erro) {
+            throw new InputMismatchException("Digite somente números!!");
+        }
 
         DadosJogo dadosJogo = new DadosJogo(codigo, novoNome, novaPlataforma, novoPreco);
 
@@ -104,7 +116,13 @@ public class MenuJogo {
 
     private static void excluirConsole() {
         System.out.print("Digite o código do jogo: ");
-        int codigo = entrada.nextInt();
+        int codigo = 0;
+
+        try {
+            codigo = entrada.nextInt();
+        } catch (InputMismatchException erro) {
+            throw new InputMismatchException("Digite somente números!!");
+        }
 
         service.excluir(codigo);
 
